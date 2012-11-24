@@ -1,3 +1,12 @@
+/*
+* ayaSlider
+* MIT Licensed
+* @author Mamod Mehyar
+* http://twitter.com/mamod
+* http://mamod.me
+*/
+
+
 (function($) {
     
     var action = {};
@@ -90,12 +99,12 @@
 		    return true;
 		}
 		
-		var durationIn = parseFloat(opt.in.duration) || 1000+(i*300),
-		delayIn = parseFloat(opt.in.delay) || 0,
-		easeIn = opt.in.ease || options.easeIn || 'easeOutBack',
-		easeOut = opt.out.ease || options.easeOut || easeIn,
-		durationOut = parseFloat(opt.out.duration) || durationIn,
-		delayOut = parseFloat(opt.out.delay) || options.delay;
+		var durationIn = parseFloat(opt.In.duration) || 1000+(i*300),
+		delayIn = parseFloat(opt.In.delay) || 0,
+		easeIn = opt.In.ease || options.easeIn || 'easeOutBack',
+		easeOut = opt.Out.ease || options.easeOut || easeIn,
+		durationOut = parseFloat(opt.Out.duration) || durationIn,
+		delayOut = parseFloat(opt.Out.delay) || options.delay;
 		
 		var defaultIn = {
 		    //left : pack.parent().outerWidth() || 500,
@@ -106,14 +115,14 @@
 		    defaultIn = options.defaultIn;
 		}
 		
-		if ( opt.in.top || opt.in.left || opt.in.opacity ){
+		if ( opt.In.top || opt.In.left || opt.In.opacity ){
 		    defaultIn = {
-		        top: parseFloat(opt.in.top) || 0,
-		        left : parseFloat(opt.in.left) || 0
+		        top: parseFloat(opt.In.top) || 0,
+		        left : parseFloat(opt.In.left) || 0
 		    };
 		    
-		    if (opt.in.opacity){
-			defaultIn.opacity = parseFloat(opt.in.opacity);
+		    if (opt.In.opacity){
+			defaultIn.opacity = parseFloat(opt.In.opacity);
 		    }
 		    
 		}
@@ -144,11 +153,11 @@
 				css = defaultIn;
 			    }
 			    
-			    if (opt.out.top || opt.out.left || opt.out.opacity){
+			    if (opt.Out.top || opt.Out.left || opt.Out.opacity){
 				css = {
-				    top: parseFloat(opt.out.top) || 0,
-				    left : parseFloat(opt.out.left) || 0,
-				    opacity : parseFloat(opt.out.opacity) || ele.css('opacity') || 1
+				    top: parseFloat(opt.Out.top) || 0,
+				    left : parseFloat(opt.Out.left) || 0,
+				    opacity : parseFloat(opt.Out.opacity) || ele.css('opacity') || 1
 				};
 			    }
 			    
@@ -163,8 +172,8 @@
 				action.timer(delayOut);
 			    }
 			    
-			    if (opt.out.opacity){
-				css.opacity = parseFloat(opt.out.opacity);
+			    if (opt.Out.opacity){
+				css.opacity = parseFloat(opt.Out.opacity);
 			    }
 			    
 			    action.timeOuts.push(setTimeout(function(){
@@ -317,21 +326,21 @@
 		var ele = $(this);
 		
 		var data = {
-		    in : {},
-		    out : {}
+		    In : {},
+		    Out : {}
 		};
 		
 		if(!ele.data("_in")){
 		    var options = ele.data('in');
 		    if (options){
-			data.in = action.add(options);
+			data.In = action.add(options);
 		    }
 		}
 		
 		if(!ele.data("_out")){
 		    var options = ele.data('out');
 		    if (options){
-			data.out = action.add(options);
+			data.Out = action.add(options);
 		    }
 		}
 		
@@ -368,7 +377,7 @@
 	    action.move(_first);
 	    
         });
-	return false;
+	
     };
     
     $.fn.ayaSlider.defaultOptions = {
