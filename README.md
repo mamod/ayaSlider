@@ -14,7 +14,7 @@ Features
 USAGE
 =====
     
-See [ayaSlider Home page](http://mamod.me/ayaSlider "")
+See [ayaSlider Demo & Usage ](https://dl.dropboxusercontent.com/u/3241507/ayaslider/index.html "")
 
 
 HELP?
