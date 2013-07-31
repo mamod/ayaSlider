@@ -9,7 +9,6 @@
 (function($) {
     var action = {};
     $.fn.ayaSlider = function(customOptions) {
-	
 	var options = $.extend({},$.fn.ayaSlider.defaultOptions, customOptions);
 	action.inout = 'in';
 	action.items = undefined;
@@ -391,4 +390,3 @@
     };
     
 })(jQuery);
-
