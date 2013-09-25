@@ -1,0 +1,28 @@
+{
+    "name": "ayaSlider",
+    "title": "Flexible jQuery slider plugin",
+    "description" : "with ayaSlider you can create a flexible slider with multiple parallax effects, there is no limits or predefined styles, you'll be able to slide any HTML element in and out with data tags",
+    "keywords": [
+        "slider",
+        "parallax",
+        "animation"
+    ],
+    "demo": "http://mamod.me/ayaSlider",
+    "version": "1.2.0",
+    "author": {
+        "name": "Mamod Mehyar",
+        "url": "http://mamod.me/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/mamod/ayaSlider/README.md"
+        }
+    ],
+    "bugs": "https://github.com/mamod/ayaSlider/issues",
+    "homepage": "http://mamod.me/ayaSlider",
+    "docs": "http://mamod.me/ayaSlider",
+    "dependencies": {
+        "jquery": ">=1.0"
+    }
+}

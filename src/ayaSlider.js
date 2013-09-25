@@ -4,6 +4,7 @@
 * @author Mamod Mehyar
 * http://twitter.com/mamod
 * http://mamod.me
+* version : 1.2.0
 */
 
 (function($) {
