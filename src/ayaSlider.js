@@ -4,7 +4,7 @@
 * @author Mamod Mehyar
 * http://twitter.com/mamod
 * http://mamod.me
-* version : 1.2.1
+* version : 1.2.2
 */
 
 (function($) {
@@ -23,18 +23,14 @@
     
     action.timer = function(delay){
         var container = action.appendTimerTo;
-        if (!container.length){
-            return;
-        }
+        if (!container.length) return;
         
         var thisTop = (container.position().top + container.outerHeight()) - 5,
         thisWidth = container.outerWidth(),
         thisLeft = container.offset().left,
         curWidth = 0;
         
-        if (!delay){
-            delay = 0;
-        }
+        if (!delay) delay = 0;
         
         $('._ayaSlider_timer').stop().css({
             top : thisTop,
@@ -50,9 +46,7 @@
     action.move = function(pack){
         action.timeOuts = [];
         action.currentSlide = pack;
-        if (!pack){
-            return false;
-        }
+        if (!pack) return false;
         
         var items = pack.find('._ayaSlider_move').andSelf();
         action.items = items;
@@ -79,9 +73,7 @@
         items.each(function(i){
             var ele = $(this);
             var opt = ele.data("_options");
-            if (!opt){
-                return true;
-            }
+            if (!opt) return true;
             
             var durationIn = parseFloat(opt.In.duration) || 1000+(i*300),
             delayIn = parseFloat(opt.In.delay) || 0,
@@ -90,10 +82,7 @@
             durationOut = parseFloat(opt.Out.duration) || durationIn,
             delayOut = parseFloat(opt.Out.delay) || options.delay;
             
-            var defaultIn = {
-                //left : pack.parent().outerWidth() || 500,
-                //opacity: 0
-            };
+            var defaultIn = {};
             
             if (typeof options.defaultIn === 'object'){
                 defaultIn = options.defaultIn;
@@ -152,27 +141,29 @@
                             css.opacity = parseFloat(opt.Out.opacity);
                         }
                         
-                        action.timeOuts.push(setTimeout(function(){
-                            clearInterval(action.interval);
-                            var inter = setInterval(function(){
-                                if (action.pause == true){
-                                
-                                } else {
-                                    clearInterval(inter);
-                                    if (ele[0] === pack[0]){
-                                        action.move(pack.loopSiblings());
-                                        items.stop();
-                                    }
+                        if (delayOut > -1) {
+                            action.timeOuts.push(setTimeout(function(){
+                                clearInterval(action.interval);
+                                var inter = setInterval(function(){
+                                    if (action.pause == true){
                                     
-                                    ele.stop().animate(css,{
-                                        duration: durationOut,
-                                        queue: false,
-                                        complete: function(){},
-                                        easing : easeOut
-                                    });
-                                }
-                            },60);
-                        },delayOut));
+                                    } else {
+                                        clearInterval(inter);
+                                        if (ele[0] === pack[0]){
+                                            action.move(pack.loopSiblings());
+                                            items.stop();
+                                        }
+                                        
+                                        ele.stop().animate(css,{
+                                            duration: durationOut,
+                                            queue: false,
+                                            complete: function(){},
+                                            easing : easeOut
+                                        });
+                                    }
+                                },60);
+                            },delayOut));
+                        }
                     },
                     easing : easeIn
                 });
