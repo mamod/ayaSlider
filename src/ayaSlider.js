@@ -4,7 +4,7 @@
 * @author Mamod Mehyar
 * http://twitter.com/mamod
 * http://mamod.me
-* version : 1.2.2
+* version : 1.2.3
 */
 
 (function($) {
@@ -25,22 +25,20 @@
         var container = action.appendTimerTo;
         if (!container.length) return;
         
-        var thisTop = (container.position().top + container.outerHeight()) - 5,
-        thisWidth = container.outerWidth(),
-        thisLeft = container.offset().left,
-        curWidth = 0;
-        
-        if (!delay) delay = 0;
-        
-        $('._ayaSlider_timer').stop().css({
-            top : thisTop,
-            left : thisLeft
-        }).animate({
-            width : thisWidth
-        },{
-            duration : delay
+        $('._ayaSlider_timer').each(function(){
+            var $this = $(this);
+            //var thisWidth = $this.parent().outerWidth()
+            //  , thisHeight = $this.parent().outerHeight();
+            
+            if (!delay) delay = 0;
+            
+            $this.stop().animate({
+                width : '100%',
+                height : '100%'
+            },{
+                duration : delay
+            }); 
         });
-        action.lastDelay = delay;
     };
     
     action.move = function(pack){
@@ -292,10 +290,11 @@
                 action.appendTimerTo = $(options.timer);
             }
             
-            $('<div class="_ayaSlider_timer" style="position:absolute;z-index:4;width:0;height:5px;background:#000;left:0;margin:0;padding:0"></div>')
+            $('<div class="_ayaSlider_timer" style="position:absolute;z-index:9999;width:0;left:0;top:0;margin:0;padding:0"></div>')
             .css({
-                opacity:0.5
-                //top : timerTop
+                opacity: options.timerOpacity,
+                height: '100%',
+                backgroundColor : options.timerColor
             }).appendTo(action.appendTimerTo);
             
             $(window).resize(function(){
@@ -328,7 +327,9 @@
     $.fn.ayaSlider.defaultOptions = {
         delay : 5000,
         easeIn : "linear",
-        easeOut : "linear"
+        easeOut : "linear",
+        timerColor : '#000',
+        timerOpacity : .5
     };
     
     $.fn.loopSiblings = function(type){
