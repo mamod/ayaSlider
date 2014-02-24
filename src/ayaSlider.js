@@ -23,12 +23,10 @@
     
     action.timer = function(delay){
         var container = action.appendTimerTo;
-        if (!container.length) return;
+        if (!(container && container.length)) return;
         
         $('._ayaSlider_timer').each(function(){
             var $this = $(this);
-            //var thisWidth = $this.parent().outerWidth()
-            //  , thisHeight = $this.parent().outerHeight();
             
             if (!delay) delay = 0;
             
