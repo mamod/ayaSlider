@@ -4,7 +4,7 @@
 * @author Mamod Mehyar
 * http://twitter.com/mamod
 * http://mamod.me
-* version : 1.2.4
+* version : 1.2.5
 */
 
 (function($) {
@@ -15,7 +15,8 @@
         action.inout = 'in';
         action.items = undefined;
         action.currentSlide = undefined;
-        
+        action.parents = $(this);
+
         action.clearTimeOuts = function(){
             for (var i = 0; i < action.timeOuts.length; i++){
                 clearTimeout(action.timeOuts[i]);
@@ -231,7 +232,7 @@
                         if (action.items) action.items.stop();
                         action.clearTimeOuts();
                         action.currentSlide.fadeOut('fast');
-                        action.move(action.currentSlide.loopSiblings(action,i));
+                        action.move(action.currentSlide.loopSiblings(action, i));
                         return false;
                     });
                 });
@@ -334,15 +335,14 @@
         timerOpacity : .5
     };
     
-    $.fn.loopSiblings = function(_action,type){
-        var $this = this;
-        
+    $.fn.loopSiblings = function(_action, type){
+        var $this = $(this);
         $this.css('zIndex','2');
         _action.previousSlide = $this;
         var item;
-        if (parseInt(type) >= 0 ){
-            item = $('._ayaSlider_slide:eq('+type+')');
-        }else if (type === 'previous'){
+        if (typeof type !== 'string' && parseInt(type) >= 0 ){
+            item = _action.parents.find('._ayaSlider_slide:eq('+type+')');
+        } else if (type === 'previous'){
             item = $this.prev('._ayaSlider_slide');
             var len = item.length;
             if (item.length == 0) {
@@ -358,5 +358,4 @@
         item.css('zIndex','3');
         return item;
     };
-    
 })(jQuery);
